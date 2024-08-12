@@ -25,12 +25,12 @@ public class JobPostService {
         if(jobPostRepository.findById(id).isEmpty()){
             return false;
         }
+        //update everything except posting date
         JobPost updatedJobPost = jobPostRepository.getById(id);
-        updatedJobPost.setTile(jobPost.getTile());
+        updatedJobPost.setTitle(jobPost.getTitle());
         updatedJobPost.setDescription(jobPost.getDescription());
         updatedJobPost.setSalary(jobPost.getSalary());
         updatedJobPost.setLocation(jobPost.getLocation());
-        updatedJobPost.setHireDate(jobPost.getHireDate());
         jobPostRepository.save(updatedJobPost);
         return true;
     }

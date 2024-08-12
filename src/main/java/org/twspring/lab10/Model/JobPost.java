@@ -6,6 +6,7 @@ import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.time.LocalDate;
 
@@ -22,7 +23,7 @@ public class JobPost {
     @Column(columnDefinition = "VARCHAR(25) NOT NULL")
     @NotEmpty(message = "Tile cannot be empty")
     @Size(min = 5, max = 25, message = "Title must have between 5 to 25 letters")
-    private String tile;
+    private String title;
 
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
     @NotEmpty(message = "Description cannot be empty")
@@ -39,8 +40,8 @@ public class JobPost {
     @Positive(message = "Salary can only be a positive number")
     private String salary;
 
-    @Column(columnDefinition = "DATETIME")
+    @Column(columnDefinition = "DATETIME DEFAULT TIMESTAMP(CURRENT_DATE)")
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate hireDate;
+    private LocalDate postDate = LocalDate.now();
 
 }

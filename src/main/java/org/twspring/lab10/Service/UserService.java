@@ -18,19 +18,13 @@ public class UserService {
         return userRepository.findAll();
     }
 
-//    public User getUserById(Integer id) {
-//        if(userRepository.findById(id).isEmpty()) {
-//            return null;
-//        }
-//        return userRepository.getById(id);
-//    }
-
     //POST
     public void addUser(User user) {
         userRepository.save(user);
     }
+    //UPDATE
     public Boolean updateUser(Integer id, User user) {
-        if(userRepository.findById(id).isEmpty()) {
+        if(!userRepository.findById(id).isPresent()) {
             return false;
         }
         User updatedUser = userRepository.getById(id);
@@ -44,7 +38,7 @@ public class UserService {
     }
 
     public Boolean deleteUser(Integer id) {
-        if(userRepository.findById(id).isEmpty()) {
+        if(!userRepository.findById(id).isPresent()) {
             return false;
         }
         userRepository.deleteById(id);

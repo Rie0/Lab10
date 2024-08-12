@@ -39,7 +39,7 @@ public class JobPost {
     @Positive(message = "Salary can only be a positive number")
     private String salary;
 
-    @Column(columnDefinition = "DATETIME DEFAULT TIMESTAMP(CURRENT_DATE)")
+    @Column(columnDefinition = "DATETIME")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate hireDate;
 

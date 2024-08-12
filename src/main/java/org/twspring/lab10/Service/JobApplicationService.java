@@ -12,13 +12,13 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class JobApplicationService {
-    private final JobApplicationRepository jopApplicationRepository;
+    private final JobApplicationRepository jobApplicationRepository;
     private final UserRepository userRepository;
     private final JobPostRepository JobpostRepository;
 
     //get
     public List<JobApplication> getAllJobApplications() {
-        return jopApplicationRepository.findAll();
+        return jobApplicationRepository.findAll();
     }
 
     //user applies for a job post
@@ -40,16 +40,16 @@ public class JobApplicationService {
         JobApplication jobApplication = new JobApplication();
         jobApplication.setJobPostId(jobPostId);
         jobApplication.setUserId(userId);
-        jopApplicationRepository.save(jobApplication);
+        jobApplicationRepository.save(jobApplication);
         return 0; //success
     }
 
     //user withdraws from job application
     public boolean deleteApplication(Integer id){
-        if(jopApplicationRepository.findById(id).isEmpty()){
+        if(jobApplicationRepository.findById(id).isEmpty()){
             return false;
         }
-        jopApplicationRepository.deleteById(id);
+        jobApplicationRepository.deleteById(id);
         return true;
     }
 }
